@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>학생관리-입력폼</title>
+</head>
+<body>
+
+<h1>학생 등록폼</h1>
+<form action='add' method='POST'>
+<table border='1'>
+<tr><th>이메일</th><td><input name='email' type='text' placeholder='예) hong@bit.com'></td></tr>
+<tr><th>암호</th><td><input name='password' type='text'></td></tr>
+<tr><th>이름</th><td><input name='name' type='text' placeholder='예) 홍길동'></td></tr>
+<tr><th>전화</th><td><input name='tel' type='text' placeholder='예) 111-1111'></td></tr>
+<tr><th>재직여부</th><td><input name='working' type='radio' value='true'>재직
+                     <input name='working' type='radio' value='false' checked>실업/미취업</td></tr>
+<tr><th>최종학력</th><td>
+<select name='grade'>
+<option value='고졸'>고졸</option>
+<option value='전문학사'>전문학사</option>
+<option value='학사'>학사</option>
+<option value='석사'>석사</option>
+<option value='박사'>박사</option>
+</select>
+</td></tr>
+<tr><th>학교명</th><td><input name='schoolName' type='text' placeholder='예) 비트대학교'></td></tr>
+<tr><th>사진</th><td><input name='photoPath' type='file'></td></tr>
+</table>
+<button type='submit'>등록</button>
+<a href='list'>목록</a>
+</form>
+
+</body>
+</html>
