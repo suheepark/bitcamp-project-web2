@@ -3,6 +3,7 @@ package bitcamp.java89.ems2.servlet.teacher;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,20 +25,24 @@ public class TeacherDeleteServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
-    response.setHeader("Refresh", "1;url=list");
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-    
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<meta charset='UTF-8'>");
-    out.println("<title>강사관리-삭제</title>");
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>삭제 결과</h1>");
-    
     try {
+      response.setContentType("text/html;charset=UTF-8");
+      PrintWriter out = response.getWriter();
+      
+      out.println("<!DOCTYPE html>");
+      out.println("<html>");
+      out.println("<head>");
+      out.println("<meta charset='UTF-8'>");
+      out.println("<title>강사관리-삭제</title>");
+      out.println("<meta http-equiv='Refresh' content='1;url=list'>");
+      out.println("</head>");
+      out.println("<body>");
+      
+      RequestDispatcher rd = request.getRequestDispatcher("/header");
+      rd.include(request, response);
+      
+      out.println("<h1>삭제 결과</h1>");
+    
       TeacherMysqlDao teacherDao = TeacherMysqlDao.getInstance();
       
       int memberNo = Integer.parseInt(request.getParameter("memberNo"));
@@ -56,12 +61,17 @@ public class TeacherDeleteServlet extends HttpServlet {
       
       out.println("<p>삭제하였습니다.</p>");
       
+      rd = request.getRequestDispatcher("/footer");
+      rd.include(request, response);
+      
+      out.println("</body>");
+      out.println("</html>");
+      
     } catch (Exception e) {
-      out.printf("<p>%s</p>\n", e.getMessage());
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+      return;
     }
-    
-    out.println("</body>");
-    out.println("</html>");
   }
   
 }
