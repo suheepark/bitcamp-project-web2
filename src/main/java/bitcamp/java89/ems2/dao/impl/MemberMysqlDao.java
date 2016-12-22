@@ -13,13 +13,8 @@ public class MemberMysqlDao implements MemberDao {
   
   DataSource ds;
   
-  private MemberMysqlDao() {
-    ds = DataSource.getInstance();
-  }
-  static MemberMysqlDao instance;
-  public static MemberMysqlDao getInstance() {
-    if (instance == null) {instance = new MemberMysqlDao();}
-    return instance;
+  public void setDataSource(DataSource ds) {
+    this.ds = ds;
   }
   
   @Override

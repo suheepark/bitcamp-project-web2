@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java89.ems2.dao.impl.ManagerMysqlDao;
-import bitcamp.java89.ems2.dao.impl.MemberMysqlDao;
+import bitcamp.java89.ems2.dao.ManagerDao;
+import bitcamp.java89.ems2.dao.MemberDao;
 import bitcamp.java89.ems2.domain.Manager;
 
 @WebServlet("/manager/update")
@@ -54,13 +54,13 @@ public class ManagerUpdateServlet extends HttpServlet {
       
       out.println("<h1>변경 결과</h1>");
     
-      ManagerMysqlDao managerDao = ManagerMysqlDao.getInstance();
+      ManagerDao managerDao = (ManagerDao)this.getServletContext().getAttribute("managerDao");
       
       if (!managerDao.exist(manager.getMemberNo())) {
         throw new Exception("회원번호를 찾지 못했습니다.");
       }
       
-      MemberMysqlDao memberDao = MemberMysqlDao.getInstance();
+      MemberDao memberDao = (MemberDao)this.getServletContext().getAttribute("memberDao");
       memberDao.update(manager);
       managerDao.update(manager);
       

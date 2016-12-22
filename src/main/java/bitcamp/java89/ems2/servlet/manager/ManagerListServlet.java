@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java89.ems2.dao.impl.ManagerMysqlDao;
+import bitcamp.java89.ems2.dao.ManagerDao;
 import bitcamp.java89.ems2.domain.Manager;
 
 @WebServlet("/manager/list")
@@ -25,7 +25,7 @@ public class ManagerListServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
-      ManagerMysqlDao managerDao = ManagerMysqlDao.getInstance();
+      ManagerDao managerDao = (ManagerDao)this.getServletContext().getAttribute("managerDao");
       ArrayList<Manager> list = managerDao.getList();
       
       response.setContentType("text/html;charset=UTF-8");

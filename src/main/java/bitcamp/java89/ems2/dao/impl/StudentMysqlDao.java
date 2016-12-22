@@ -13,13 +13,8 @@ public class StudentMysqlDao implements StudentDao {
   
   DataSource ds;
   
-  private StudentMysqlDao() {
-    ds = DataSource.getInstance();
-  }
-  static StudentMysqlDao instance;
-  public static StudentMysqlDao getInstance() {
-    if (instance == null) {instance = new StudentMysqlDao();}
-    return instance;
+  public void setDataSource(DataSource ds) {
+    this.ds = ds;
   }
 
   @Override

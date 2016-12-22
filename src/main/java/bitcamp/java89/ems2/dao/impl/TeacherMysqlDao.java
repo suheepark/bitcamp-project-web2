@@ -13,13 +13,8 @@ public class TeacherMysqlDao implements TeacherDao {
   
   DataSource ds;
   
-  private TeacherMysqlDao() {
-    ds = DataSource.getInstance();
-  }
-  static TeacherMysqlDao instance;
-  public static TeacherMysqlDao getInstance() {
-    if (instance == null) {instance = new TeacherMysqlDao();}
-    return instance;
+  public void setDataSource(DataSource ds) {
+    this.ds = ds;
   }
   
   public ArrayList<Teacher> getList() throws Exception {

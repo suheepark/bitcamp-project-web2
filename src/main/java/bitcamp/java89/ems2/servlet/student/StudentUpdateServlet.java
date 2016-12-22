@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java89.ems2.dao.impl.MemberMysqlDao;
-import bitcamp.java89.ems2.dao.impl.StudentMysqlDao;
+import bitcamp.java89.ems2.dao.MemberDao;
+import bitcamp.java89.ems2.dao.StudentDao;
 import bitcamp.java89.ems2.domain.Student;
 
 @WebServlet("/student/update")
@@ -55,13 +55,13 @@ public class StudentUpdateServlet extends HttpServlet {
       
       out.println("<h1>변경 결과</h1>");
     
-      StudentMysqlDao studentDao = StudentMysqlDao.getInstance();
+      StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
       
       if (!studentDao.exist(student.getMemberNo())) {
         throw new Exception("이메일을 찾지 못했습니다.");
       }
       
-      MemberMysqlDao memberDao = MemberMysqlDao.getInstance();
+      MemberDao memberDao = (MemberDao)this.getServletContext().getAttribute("memberDao");
       memberDao.update(student);
       studentDao.update(student);
       

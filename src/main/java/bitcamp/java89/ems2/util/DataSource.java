@@ -7,20 +7,8 @@ import java.util.ArrayList;
 public class DataSource {
   ArrayList<Connection> conPool = new ArrayList<>();
   
-  private DataSource() {
-    try {
+  public DataSource() throws Exception {
       Class.forName("com.mysql.jdbc.Driver");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-  
-  static DataSource instance;
-  public static DataSource getInstance() {
-    if (instance == null) {
-      instance = new DataSource();
-    }
-    return instance;
   }
   
   public Connection getConnection() throws Exception {

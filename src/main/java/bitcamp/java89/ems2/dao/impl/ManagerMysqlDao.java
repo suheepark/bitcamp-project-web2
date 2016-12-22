@@ -13,13 +13,8 @@ public class ManagerMysqlDao implements ManagerDao {
   
   DataSource ds;
   
-  private ManagerMysqlDao() {
-    ds = DataSource.getInstance();
-  }
-  static ManagerMysqlDao instance;
-  public static ManagerMysqlDao getInstance() {
-    if (instance == null) {instance = new ManagerMysqlDao();}
-    return instance;
+  public void setDataSource(DataSource ds) {
+    this.ds = ds;
   }
   
   public ArrayList<Manager> getList() throws Exception {

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java89.ems2.dao.impl.StudentMysqlDao;
+import bitcamp.java89.ems2.dao.StudentDao;
 import bitcamp.java89.ems2.domain.Student;
 
 @WebServlet("/student/list")
@@ -25,7 +25,7 @@ public class StudentListServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
-      StudentMysqlDao studentDao = StudentMysqlDao.getInstance();
+      StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
       ArrayList<Student> list = studentDao.getList();
       
       response.setContentType("text/html;charset=UTF-8");
